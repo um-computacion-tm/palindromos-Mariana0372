@@ -1,5 +1,9 @@
 import unittest
 
+def obtener_cantidad_de_palabras_palindrome(palabras):
+    for palabra in palabras:
+        print(palabra)
+
 
 class TestCantidadDePalabrasPalindromes(unittest.TesCase):
     def test_cantidad_de_palabras_palindromes_simple(self):
