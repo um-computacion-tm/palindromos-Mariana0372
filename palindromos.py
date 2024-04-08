@@ -1,55 +1,90 @@
 import unittest
 
-def obtener_cantidad_de_palabras_palindrome(palabras):
-    for palabra in palabras:
-        print(palabra)
+
+def is_palindrome(mystring):
+    for indice in range(0, len(mystring)):
+        print(mystring[indice] + " --> " + mystring[-(indice +1)])
+        if mystring[indice] !=  mystring[-(indice+1)]:
+            print("no es")
+            return False
+    return True
+    #return mystring[0] == mystring[-1]
 
 
-class TestCantidadDePalabrasPalindromes(unittest.TesCase):
-    def test_cantidad_de_palabras_palindromes_simple(self):
-        palabras = ["ala"]
-        resultado = obtener_cantidad_de_palabras_palindrome(palabras)
-        self.assertEqual(resultado, 1)
+class TestPalindrome(unittest.TestCase):
+    def test_a(self):
+        resultado = is_palindrome('a')
+        self.assertEqual(resultado, True)
 
-    def test_cantidad_de_palabras_palindromes_con_2(self):
-        palabras = ["ala", "neuquen"]
-        resultado = obtener_cantidad_de_palabras_palindrome(palabras)
-        self.assertEqual(resultado, 2)
+    def test_b(self):
+        resultado = is_palindrome('B')
+        self.assertEqual(resultado, True)
 
-    def test_cantidad_de_palabras_palindromes_con_3(self):
-        palabras = ["ala", "neuquen", "hola"]
-        resultado = obtener_cantidad_de_palabras_palindrome(palabras)
-        self.assertEqual(resultado, 2)
+    def test_aa(self):
+        resultado = is_palindrome('aa')
+        self.assertEqual(resultado, True)
 
-    def test_cantidad_de_palabras_palindromes_con_4(self):
-        palabras = ["ala", "neuquen", "hola", "programacion"]
-        resultado = obtener_cantidad_de_palabras_palindrome(palabras)
-        self.assertEqual(resultado, 2)
+    def test_ab(self):
+        resultado = is_palindrome('ab')
+        self.assertEqual(resultado, False)
 
-    def test_cantidad_de_palabras_palindromes_con_5(self):
-        palabras = ["ala", "neuquen", "hola", "programacion", "palap"]
-        resultado = obtener_cantidad_de_palabras_palindrome(palabras)
-        self.assertEqual(resultado, 3)
+    def test_aCa(self):
+        resultado = is_palindrome('aCa')
+        self.assertEqual(resultado, True)
 
-    def test_cantidad_de_palabras_palindromes_complejo(self):
-        palabras = ["ala", "neuquen", "hola", "programacion", "palap", "neu  quen"]
-        resultado = obtener_cantidad_de_palabras_palindrome(palabras)
-        self.assertEqual(resultado, 3)
+    def test_aCs(self):
+        resultado = is_palindrome('aCs')
+        self.assertEqual(resultado, False)
 
-    def test_cantidad_de_palabras_palindromes_complejo_2(self):
-        palabras = [
-            "ala",
-            "neuquen",
-            "hola",
-            "programacion",
-            "palap",
-            "neu  quen",
-            "agita falsos usos la fatiga",
-            "presidente de la camara de diputados: martin menem",
-			"A man, a plan, a canal - Panama"
-        ]
-        resultado = obtener_cantidad_de_palabras_palindrome(palabras)
-        self.assertEqual(resultado, 6)
+    def test_ABBA(self):
+        resultado = is_palindrome('ABBA')
+        self.assertEqual(resultado, True)
 
+    def test_ABCA(self):
+        resultado = is_palindrome('BACB')
+        self.assertEqual(resultado, False)
+
+    def test_ABCBA(self):
+        resultado = is_palindrome('ABCBA')
+        self.assertEqual(resultado, True)
+
+    def test_ABCCBA(self):
+        resultado = is_palindrome('ABCCBA')
+        self.assertEqual(resultado, True)
+
+    def test_ZBCCBA(self):
+        resultado = is_palindrome('ZBCCBA')
+        self.assertEqual(resultado, False)
+
+    def test_neuquen(self):
+        resultado = is_palindrome('neuquen')
+        self.assertEqual(resultado, True)
+
+    def test_neuqueM(self):
+        resultado = is_palindrome('neuqueM')
+        self.assertEqual(resultado, False)
+
+    def test_neuquen_con_mayusculas(self):
+        resultado = is_palindrome('Neuquen')
+        self.assertEqual(resultado, True)
+
+    def test_neuquen_con_simbolos(self):
+        resultado = is_palindrome('neuquen!!!')
+        self.assertEqual(resultado, True)
+
+    def test_neuquen_con_mezcla_mayusculas_minusculas(self):
+        resultado = is_palindrome('nEuquEN')
+        self.assertEqual(resultado, True)
+
+class TestPalindrome(unittest.TestCase):        
+
+ def correr_pruebas():
+    loader = unittest.TestLoader()
+    suite = loader.loadTestsFromTestCase(TestPalindrome)
+    runner = unittest.TextTestRunner()
+    result = runner.run(suite)
+
+if __name__ == '__main__':
+    correr_pruebas()    
 
 unittest.main()
