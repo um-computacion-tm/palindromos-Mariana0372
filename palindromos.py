@@ -84,7 +84,5 @@ class TestPalindrome(unittest.TestCase):
     runner = unittest.TextTestRunner()
     result = runner.run(suite)
 
-if __name__ == '__main__':
-    correr_pruebas()    
-
-unittest.main()
+if __name__ == '__main__': 
+    unittest.main()
